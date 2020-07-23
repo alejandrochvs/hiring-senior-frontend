@@ -1,5 +1,9 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import MiniInvoice from '@/components/MiniInvoice.vue';
+import { BootstrapVue } from 'bootstrap-vue';
+
+const localVue = createLocalVue();
+localVue.use(BootstrapVue);
 
 describe('MiniInvoice.vue', () => {
   it('renders pay button when status is late', () => {
@@ -32,6 +36,7 @@ describe('MiniInvoice.vue', () => {
         invoice,
         highlight: 'late',
       },
+      localVue,
     });
     expect(wrapper.find('.mini-invoice__pay-btn'))
       .toBeDefined();
